@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<TotalConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PassCount>1895</PassCount>
+  <NgCount>306</NgCount>
+  <BoxCount>2201</BoxCount>
+  <PassRate>0.86097228532485237</PassRate>
+</TotalConfig>

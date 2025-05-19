@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<FormUserLoginName xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Label_Password>
+    <string>密码:</string>
+    <string>Password:</string>
+  </Label_Password>
+  <Btn_Login>
+    <string>登陆</string>
+    <string>Login</string>
+  </Btn_Login>
+</FormUserLoginName>

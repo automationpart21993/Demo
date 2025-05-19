@@ -1,0 +1,661 @@
+<?xml version="1.0"?>
+<FormSettingName xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Btn_Beacon_Buzzer>
+    <string>蜂鸣器</string>
+    <string>Buzzer</string>
+  </Btn_Beacon_Buzzer>
+  <Btn_Beacon_Lamp_Green>
+    <string>绿灯</string>
+    <string>Lamp Green</string>
+  </Btn_Beacon_Lamp_Green>
+  <Btn_Beacon_Lamp_Yellow>
+    <string>黄灯</string>
+    <string>Lamp Yellow</string>
+  </Btn_Beacon_Lamp_Yellow>
+  <Btn_Beacon_Lamp_Red>
+    <string>红灯</string>
+    <string>Lamp Red</string>
+  </Btn_Beacon_Lamp_Red>
+  <Btn_Belt_D03_Run>
+    <string>拉带三启动</string>
+    <string>Belt D03 Run</string>
+  </Btn_Belt_D03_Run>
+  <Btn_Belt_D02_Run>
+    <string>拉带二启动</string>
+    <string>Belt D02 Run</string>
+  </Btn_Belt_D02_Run>
+  <Btn_Belt_D01_Run>
+    <string>拉带一启动</string>
+    <string>Belt D01 Run</string>
+  </Btn_Belt_D01_Run>
+  <Btn_Belt_D03_Direction>
+    <string>拉带三方向</string>
+    <string>Belt D03 Direction</string>
+  </Btn_Belt_D03_Direction>
+  <Btn_Belt_D02_Direction>
+    <string>拉带二方向</string>
+    <string>Belt D02 Direction</string>
+  </Btn_Belt_D02_Direction>
+  <Btn_Belt_D01_Direction>
+    <string>拉带一方向</string>
+    <string>Belt D01 Direction</string>
+  </Btn_Belt_D01_Direction>
+  <Btn_Belt_D03_Enable>
+    <string>拉带三使能</string>
+    <string>Belt D03 Enable</string>
+  </Btn_Belt_D03_Enable>
+  <Btn_Belt_D02_Enable>
+    <string>拉带二使能</string>
+    <string>Belt D02 Enable</string>
+  </Btn_Belt_D02_Enable>
+  <Btn_Belt_D01_Enable>
+    <string>拉带一使能</string>
+    <string>Belt D01 Enable</string>
+  </Btn_Belt_D01_Enable>
+  <Btn_VirtualAction_D03>
+    <string>翻转段虚拟动作</string>
+    <string>Virtual Action D03</string>
+  </Btn_VirtualAction_D03>
+  <Btn_PassAction>
+    <string>Pass动作</string>
+    <string>Pass Action</string>
+  </Btn_PassAction>
+  <Btn_NGAction>
+    <string>NG动作</string>
+    <string>NG Action</string>
+  </Btn_NGAction>
+  <Btn_Station_SKUChange>
+    <string>料号变更信号</string>
+    <string>Signal SKUChange</string>
+  </Btn_Station_SKUChange>
+  <Btn_Station_LabelType>
+    <string>封口标签类型信号</string>
+    <string>Signal ClosureLabtl Type</string>
+  </Btn_Station_LabelType>
+  <Btn_Station_NotPaste>
+    <string>无需贴标信号</string>
+    <string>Signal NotPaste</string>
+  </Btn_Station_NotPaste>
+  <Btn_Station_GetReady_Output>
+    <string>出料准备信号</string>
+    <string>Station GetReady Output</string>
+  </Btn_Station_GetReady_Output>
+  <Btn_Cyl_D03Carry>
+    <string>NG搬运气缸</string>
+    <string>D03 Carry</string>
+  </Btn_Cyl_D03Carry>
+  <Btn_Cyl_D03Rotate>
+    <string>翻转旋转气缸</string>
+    <string>D03 Rotate</string>
+  </Btn_Cyl_D03Rotate>
+  <Btn_Cyl_D03Clamp>
+    <string>翻转夹子气缸</string>
+    <string>D03 Clamp</string>
+  </Btn_Cyl_D03Clamp>
+  <Btn_Cyl_D03Forward>
+    <string>翻转平移气缸</string>
+    <string>D03 Forward</string>
+  </Btn_Cyl_D03Forward>
+  <Btn_Cyl_D03Lifter>
+    <string>翻转升降气缸</string>
+    <string>D03 Lifter</string>
+  </Btn_Cyl_D03Lifter>
+  <Btn_Cyl_D03Adjust>
+    <string>翻转整形气缸</string>
+    <string>D03 Adjust</string>
+  </Btn_Cyl_D03Adjust>
+  <Btn_VirtualAction_D02>
+    <string>检测段虚拟动作</string>
+    <string>Virtual Action D02</string>
+  </Btn_VirtualAction_D02>
+  <Btn_Cyl_D02Weigh>
+    <string>检测称重气缸</string>
+    <string>D02 Weigh</string>
+  </Btn_Cyl_D02Weigh>
+  <Btn_Cyl_D02Intercept>
+    <string>检测阻挡气缸</string>
+    <string>D02 Intercept</string>
+  </Btn_Cyl_D02Intercept>
+  <Btn_VirtualAction_D01>
+    <string>入料段虚拟动作</string>
+    <string>Virtual Action D01</string>
+  </Btn_VirtualAction_D01>
+  <Btn_Station_GetReady_Input>
+    <string>入料准备信号</string>
+    <string>Station GetReady Input</string>
+  </Btn_Station_GetReady_Input>
+  <Btn_Cyl_D01Intercept>
+    <string>入料阻挡气缸</string>
+    <string>D01 Intercept</string>
+  </Btn_Cyl_D01Intercept>
+  <Btn_BeltAction>
+    <string>回流彩盒</string>
+    <string>BackFlow Box</string>
+  </Btn_BeltAction>
+  <Gb_Step_Beacon>
+    <string>灯塔</string>
+    <string>Beacon</string>
+  </Gb_Step_Beacon>
+  <Gb_Step_Belt>
+    <string>拉带</string>
+    <string>Belt</string>
+  </Gb_Step_Belt>
+  <Gb_Step_D03>
+    <string>翻转段</string>
+    <string>D03</string>
+  </Gb_Step_D03>
+  <Gb_Step_D02>
+    <string>检测段</string>
+    <string>D02</string>
+  </Gb_Step_D02>
+  <Gb_Step_D01>
+    <string>入料段</string>
+    <string>D01</string>
+  </Gb_Step_D01>
+  <Btn_CheckPath>
+    <string>检查路径</string>
+    <string>Check Route</string>
+  </Btn_CheckPath>
+  <Btn_GetRetailData>
+    <string>获取Retail数据</string>
+    <string>Get Retail Data</string>
+  </Btn_GetRetailData>
+  <Btn_GetBOBData>
+    <string>获取BOB数据</string>
+    <string>Get BOB Data</string>
+  </Btn_GetBOBData>
+  <Btn_GetDutData>
+    <string>获取Dut数据</string>
+    <string>Get Dut Data</string>
+  </Btn_GetDutData>
+  <Btn_GetClosure>
+    <string>获取封口</string>
+    <string>Get Closure</string>
+  </Btn_GetClosure>
+  <Btn_UpLoadPass>
+    <string>数据上传</string>
+    <string>UpLoad Pass</string>
+  </Btn_UpLoadPass>
+  <Label_CCD1_EXTime>
+    <string>相机一曝光:</string>
+    <string>CCD1 Exposure:</string>
+  </Label_CCD1_EXTime>
+  <Label_CCD2_EXTime>
+    <string>相机二曝光:</string>
+    <string>CCD2 Exposure:</string>
+  </Label_CCD2_EXTime>
+  <Label_CCD3_EXTime>
+    <string>相机三曝光:</string>
+    <string>CCD3 Exposure:</string>
+  </Label_CCD3_EXTime>
+  <Btn_CCD1_TakePicture>
+    <string>相机一拍照</string>
+    <string>CCD1 Take:Pictrue</string>
+  </Btn_CCD1_TakePicture>
+  <Btn_CCD2_TakePicture>
+    <string>相机二拍照</string>
+    <string>CCD2 Take:Pictrue</string>
+  </Btn_CCD2_TakePicture>
+  <Btn_CCD3_TakePicture>
+    <string>相机三拍照</string>
+    <string>CCD3 Take:Pictrue</string>
+  </Btn_CCD3_TakePicture>
+  <Btn_CCD1_ReadPicture>
+    <string>相机一读取照片</string>
+    <string>CCD1 Read:Pictrue</string>
+  </Btn_CCD1_ReadPicture>
+  <Btn_CCD2_ReadPicture>
+    <string>相机二读取照片</string>
+    <string>CCD2 Read:Pictrue</string>
+  </Btn_CCD2_ReadPicture>
+  <Btn_CCD3_ReadPicture>
+    <string>相机三读取照片</string>
+    <string>CCD3 Read:Pictrue</string>
+  </Btn_CCD3_ReadPicture>
+  <Btn_CCD1_SavePicture>
+    <string>相机一保存照片</string>
+    <string>CCD1 Save:Pictrue</string>
+  </Btn_CCD1_SavePicture>
+  <Btn_CCD2_SavePicture>
+    <string>相机二保存照片</string>
+    <string>CCD2 Save:Pictrue</string>
+  </Btn_CCD2_SavePicture>
+  <Btn_CCD3_SavePicture>
+    <string>相机三保存照片</string>
+    <string>CCD3 Save:Pictrue</string>
+  </Btn_CCD3_SavePicture>
+  <Btn_Type_Front>
+    <string>正面型号识别</string>
+    <string>Type Front Discern</string>
+  </Btn_Type_Front>
+  <Btn_Color_Front>
+    <string>正面颜色识别</string>
+    <string>Color Front Discern</string>
+  </Btn_Color_Front>
+  <Btn_GLabel_Retail>
+    <string>防伪识别</string>
+    <string>GLabel Discern</string>
+  </Btn_GLabel_Retail>
+  <Btn_Type_Retail>
+    <string>侧面型号识别</string>
+    <string>Type Retail Discern</string>
+  </Btn_Type_Retail>
+  <Btn_Memory_Retail>
+    <string>内存识别</string>
+    <string>Memory Discern</string>
+  </Btn_Memory_Retail>
+  <Btn_Color_Retail>
+    <string>侧面颜色识别</string>
+    <string>Color Retail Discern</string>
+  </Btn_Color_Retail>
+  <Btn_BarCode_Retail>
+    <string>条码识别</string>
+    <string>BarCode Discern</string>
+  </Btn_BarCode_Retail>
+  <Btn_Type_BOB>
+    <string>底面型号识别</string>
+    <string>Type BOB Discern</string>
+  </Btn_Type_BOB>
+  <Btn_Price_BOB>
+    <string>价格识别</string>
+    <string>Price Discern</string>
+  </Btn_Price_BOB>
+  <Btn_Date_BOB>
+    <string>日期识别</string>
+    <string>Date Discern</string>
+  </Btn_Date_BOB>
+  <Gb_CCDDebug>
+    <string>相机调试</string>
+    <string>CCD Debug</string>
+  </Gb_CCDDebug>
+  <Gb_SFCDebug>
+    <string>SFC调试</string>
+    <string>SFC Debug</string>
+  </Gb_SFCDebug>
+  <Gb_OptLightConfig>
+    <string>光源配置</string>
+    <string>OptLight Config</string>
+  </Gb_OptLightConfig>
+  <Btn_OptLightOpen>
+    <string>开启光源控制器</string>
+    <string>Open OptLight Controller</string>
+  </Btn_OptLightOpen>
+  <Btn_OptLightClose>
+    <string>关闭光源控制器</string>
+    <string>Close OptLight Controller</string>
+  </Btn_OptLightClose>
+  <OptLightController>
+    <string>通道一:彩盒正面左</string>
+    <string>通道二:彩盒正面右</string>
+    <string>通道三:彩盒零售标签</string>
+    <string>通道四:彩盒底部标签</string>
+    <string>Channel 01:Color Box Front Left</string>
+    <string>Channel 02:Color Box Front Right</string>
+    <string>Channel 03:Color Box Retail Label</string>
+    <string>Channel 04:Color Box BOB Label</string>
+  </OptLightController>
+  <Gb_OptLightController>
+    <string>光源控制器</string>
+    <string>OptLight Controller</string>
+  </Gb_OptLightController>
+  <Btn_GetScalesResult>
+    <string>测试电子秤</string>
+    <string>Scales Debug</string>
+  </Btn_GetScalesResult>
+  <Btn_ScalesOpen>
+    <string>打开电子秤</string>
+    <string>Open Scales</string>
+  </Btn_ScalesOpen>
+  <Btn_ScalesClose>
+    <string>关闭电子秤</string>
+    <string>Close Scales</string>
+  </Btn_ScalesClose>
+  <Btn_GetScannerResult>
+    <string>测试扫码枪</string>
+    <string>Scanner Debug</string>
+  </Btn_GetScannerResult>
+  <Btn_ScannerOpen>
+    <string>开启扫码枪</string>
+    <string>Open Scanner</string>
+  </Btn_ScannerOpen>
+  <Btn_ScannerClose>
+    <string>关闭扫码枪</string>
+    <string>Close Scanner</string>
+  </Btn_ScannerClose>
+  <Gb_ScalesConfig>
+    <string>电子秤配置</string>
+    <string>Scales Config</string>
+  </Gb_ScalesConfig>
+  <Gb_ScannerConfig>
+    <string>扫码枪配置</string>
+    <string>Scanner Config</string>
+  </Gb_ScannerConfig>
+  <Gb_CCDConfig>
+    <string>视觉配置</string>
+    <string>CCD Config</string>
+  </Gb_CCDConfig>
+  <Gb_MachineConfig>
+    <string>设备配置</string>
+    <string>Machine Config</string>
+  </Gb_MachineConfig>
+  <Tp_OtherDebug>
+    <string>    其他调试    </string>
+    <string>     OtherDebug     </string>
+  </Tp_OtherDebug>
+  <Tp_StepDebug>
+    <string>    动作调试    </string>
+    <string>      StepDebug     </string>
+  </Tp_StepDebug>
+  <Tp_CylinderDebug>
+    <string>    气缸调试    </string>
+    <string>    CylinderDebug   </string>
+  </Tp_CylinderDebug>
+  <Tp_IODebug>
+    <string>    IO调试    </string>
+    <string>       IODebug      </string>
+  </Tp_IODebug>
+  <Tp_OptLightConfig>
+    <string>    光源配置    </string>
+    <string>   OptLightConfig   </string>
+  </Tp_OptLightConfig>
+  <Tp_SerialConfig>
+    <string>    串口配置    </string>
+    <string>    SerailConfig    </string>
+  </Tp_SerialConfig>
+  <Tp_MachineConfig>
+    <string>    设备配置    </string>
+    <string>    MachineConfig   </string>
+  </Tp_MachineConfig>
+  <Btn_UserManagement>
+    <string>用户管理</string>
+    <string>UserManagement</string>
+  </Btn_UserManagement>
+  <Status_Level_03>
+    <string>CCD配置管理</string>
+    <string>CCDConfig</string>
+  </Status_Level_03>
+  <Status_Level_02>
+    <string>IO配置管理</string>
+    <string>IOConfig</string>
+  </Status_Level_02>
+  <Status_Level_01>
+    <string>设备配置管理</string>
+    <string>MachineConfig</string>
+  </Status_Level_01>
+  <Label_AccessLevel>
+    <string>用户等级:</string>
+    <string>Access Level:</string>
+  </Label_AccessLevel>
+  <Btn_SaveConfig>
+    <string>保存配置</string>
+    <string>SaveConfig</string>
+  </Btn_SaveConfig>
+  <Gb_Input>
+    <string>输入</string>
+    <string>Input</string>
+  </Gb_Input>
+  <Gb_Output>
+    <string>输出</string>
+    <string>Output</string>
+  </Gb_Output>
+  <Gb_Output_D01>
+    <string>入料段气缸</string>
+    <string>D01 Cylinder</string>
+  </Gb_Output_D01>
+  <Gb_Output_D02>
+    <string>检测段气缸</string>
+    <string>D02 Cylinder</string>
+  </Gb_Output_D02>
+  <Gb_Output_D03>
+    <string>翻转段气缸</string>
+    <string>D03 Cylinder</string>
+  </Gb_Output_D03>
+  <Cyl_D01Intercept>
+    <string>入料阻挡气缸</string>
+    <string>Cyl D01Intercept</string>
+  </Cyl_D01Intercept>
+  <Cyl_D02Intercept>
+    <string>检测阻挡气缸</string>
+    <string>Cyl D02Intercept</string>
+  </Cyl_D02Intercept>
+  <Cyl_D02Weigh>
+    <string>称重气缸</string>
+    <string>Cyl D02Weigh</string>
+  </Cyl_D02Weigh>
+  <Cyl_D03Adjust>
+    <string>翻转整形气缸</string>
+    <string>Cyl D03Adjust</string>
+  </Cyl_D03Adjust>
+  <Cyl_D03Clamp>
+    <string>翻转夹子气缸</string>
+    <string>Cyl D03Clamp</string>
+  </Cyl_D03Clamp>
+  <Cyl_D03Rotate>
+    <string>旋转气缸</string>
+    <string>Cyl D03Rotate</string>
+  </Cyl_D03Rotate>
+  <Cyl_D03Forward>
+    <string>翻转平移气缸</string>
+    <string>Cyl D03Forward</string>
+  </Cyl_D03Forward>
+  <Cyl_D03Lifter>
+    <string>翻转升降气缸</string>
+    <string>Cyl D03Lifter</string>
+  </Cyl_D03Lifter>
+  <Cyl_D03Carry>
+    <string>NG搬运气缸</string>
+    <string>Cyl NGCarry</string>
+  </Cyl_D03Carry>
+  <Cyl_D01Intercept_Org>
+    <string>原点</string>
+    <string>Org</string>
+  </Cyl_D01Intercept_Org>
+  <Cyl_D01Intercept_On>
+    <string>动点</string>
+    <string>On</string>
+  </Cyl_D01Intercept_On>
+  <Cyl_D02Intercept_Org>
+    <string>原点</string>
+    <string>Org</string>
+  </Cyl_D02Intercept_Org>
+  <Cyl_D02Intercept_On>
+    <string>动点</string>
+    <string>On</string>
+  </Cyl_D02Intercept_On>
+  <Cyl_D02Weigh_Org>
+    <string>原点</string>
+    <string>Org</string>
+  </Cyl_D02Weigh_Org>
+  <Cyl_D02Weigh_On>
+    <string>动点</string>
+    <string>On</string>
+  </Cyl_D02Weigh_On>
+  <Cyl_D03Adjust_Left_Org>
+    <string>左原点</string>
+    <string>Left Org</string>
+  </Cyl_D03Adjust_Left_Org>
+  <Cyl_D03Adjust_Left_On>
+    <string>左动点</string>
+    <string>Left On</string>
+  </Cyl_D03Adjust_Left_On>
+  <Cyl_D03Adjust_Right_Org>
+    <string>右原点</string>
+    <string>Right Org</string>
+  </Cyl_D03Adjust_Right_Org>
+  <Cyl_D03Adjust_Right_On>
+    <string>有动点</string>
+    <string>Right On</string>
+  </Cyl_D03Adjust_Right_On>
+  <Cyl_D03Clamp_Org>
+    <string>原点</string>
+    <string>Org</string>
+  </Cyl_D03Clamp_Org>
+  <Cyl_D03Clamp_On>
+    <string>动点</string>
+    <string>On</string>
+  </Cyl_D03Clamp_On>
+  <Cyl_D03Rotate_Org>
+    <string>原点</string>
+    <string>Org</string>
+  </Cyl_D03Rotate_Org>
+  <Cyl_D03Rotate_On>
+    <string>动点</string>
+    <string>On</string>
+  </Cyl_D03Rotate_On>
+  <Cyl_D03Forward_Org>
+    <string>原点</string>
+    <string>Org</string>
+  </Cyl_D03Forward_Org>
+  <Cyl_D03Forward_On>
+    <string>动点</string>
+    <string>On</string>
+  </Cyl_D03Forward_On>
+  <Cyl_D03Lifter_Org>
+    <string>原点</string>
+    <string>Org</string>
+  </Cyl_D03Lifter_Org>
+  <Cyl_D03Lifter_On>
+    <string>动点</string>
+    <string>On</string>
+  </Cyl_D03Lifter_On>
+  <Cyl_D03Carry_Org>
+    <string>原点</string>
+    <string>Org</string>
+  </Cyl_D03Carry_Org>
+  <Cyl_D03Carry_On>
+    <string>动点</string>
+    <string>On</string>
+  </Cyl_D03Carry_On>
+  <Belt_D01_Enable>
+    <string>拉带一使能</string>
+    <string>D01 Belt Enale</string>
+  </Belt_D01_Enable>
+  <Belt_D01_Direction>
+    <string>拉带一方向</string>
+    <string>D01 Belt Direction</string>
+  </Belt_D01_Direction>
+  <Belt_D01_Run>
+    <string>拉带一启动</string>
+    <string>D01 Belt Run</string>
+  </Belt_D01_Run>
+  <Belt_D01_Alarm>
+    <string>拉带一报警</string>
+    <string>D01 Belt Alarm</string>
+  </Belt_D01_Alarm>
+  <Belt_D02_Enable>
+    <string>拉带二使能</string>
+    <string>D02 Belt Enale</string>
+  </Belt_D02_Enable>
+  <Belt_D02_Direction>
+    <string>拉带二方向</string>
+    <string>D02 Belt Direction</string>
+  </Belt_D02_Direction>
+  <Belt_D02_Run>
+    <string>拉带二启动</string>
+    <string>D02 Belt Run</string>
+  </Belt_D02_Run>
+  <Belt_D02_Alarm>
+    <string>拉带二报警</string>
+    <string>D02 Belt Alarm</string>
+  </Belt_D02_Alarm>
+  <Belt_D03_Enable>
+    <string>拉带三使能</string>
+    <string>D03 Belt Enale</string>
+  </Belt_D03_Enable>
+  <Belt_D03_Direction>
+    <string>拉带三方向</string>
+    <string>D03 Belt Direction</string>
+  </Belt_D03_Direction>
+  <Belt_D03_Run>
+    <string>拉带三启动</string>
+    <string>D03 Belt Run</string>
+  </Belt_D03_Run>
+  <Belt_D03_Alarm>
+    <string>拉带三报警</string>
+    <string>D03 Belt Alarm</string>
+  </Belt_D03_Alarm>
+  <Signal_D01_Enter>
+    <string>拉带一感应</string>
+    <string>Signal D01 Enter</string>
+  </Signal_D01_Enter>
+  <Signal_D02_Enter>
+    <string>拉带二感应</string>
+    <string>Signal D02 Enter</string>
+  </Signal_D02_Enter>
+  <Signal_D03_Enter>
+    <string>拉带三感应</string>
+    <string>Signal D03 Enter</string>
+  </Signal_D03_Enter>
+  <Signal_NG_First>
+    <string>第一NG感应</string>
+    <string>Signal NG First</string>
+  </Signal_NG_First>
+  <Signal_NG_Second>
+    <string>第二NG感应</string>
+    <string>Signal NG Second</string>
+  </Signal_NG_Second>
+  <Signal_EMG>
+    <string>急停信号</string>
+    <string>Signal EMG</string>
+  </Signal_EMG>
+  <Signal_Stop>
+    <string>停止信号</string>
+    <string>Signal Stop</string>
+  </Signal_Stop>
+  <Signal_Reset>
+    <string>复位信号</string>
+    <string>Signal Reset</string>
+  </Signal_Reset>
+  <Signal_Run>
+    <string>启动信号</string>
+    <string>Signal Run</string>
+  </Signal_Run>
+  <Signal_SafeGuard>
+    <string>门禁信号</string>
+    <string>Signal SafeGuard</string>
+  </Signal_SafeGuard>
+  <Beacon_Lamp_Red>
+    <string>红灯</string>
+    <string>Lamp Red</string>
+  </Beacon_Lamp_Red>
+  <Beacon_Lamp_Yellow>
+    <string>黄灯</string>
+    <string>Lamp Yellow</string>
+  </Beacon_Lamp_Yellow>
+  <Beacon_Lamp_Green>
+    <string>绿灯</string>
+    <string>Lamp Green</string>
+  </Beacon_Lamp_Green>
+  <Beacon_Buzzer>
+    <string>蜂鸣器</string>
+    <string>Buzzer</string>
+  </Beacon_Buzzer>
+  <Station_Next_Ready>
+    <string>下一站要料</string>
+    <string>Next Station Ready</string>
+  </Station_Next_Ready>
+  <Station_Next_GetBox>
+    <string>下一站到料</string>
+    <string>Next Station GetBox</string>
+  </Station_Next_GetBox>
+  <Station_GetReady_Input>
+    <string>产品输入准备</string>
+    <string>Station GetReady Input</string>
+  </Station_GetReady_Input>
+  <Station_GetReady_Output>
+    <string>产品输出准备</string>
+    <string>Station GetReady Output</string>
+  </Station_GetReady_Output>
+  <Station_NotPaste>
+    <string>无需贴标</string>
+    <string>Porduct NotPaste</string>
+  </Station_NotPaste>
+  <Station_LabelType>
+    <string>标签类型</string>
+    <string>Porduct LabelType</string>
+  </Station_LabelType>
+  <Station_SKUChange>
+    <string>SKU变更</string>
+    <string>SKUChange</string>
+  </Station_SKUChange>
+</FormSettingName>

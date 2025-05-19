@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<FormInitName xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Init_Title>
+    <string>软件加载中......</string>
+    <string>Software Initialization......</string>
+  </Init_Title>
+  <Init_IOCard>
+    <string>IO卡初始化</string>
+    <string>IOCard Initialization</string>
+  </Init_IOCard>
+  <Init_Scales>
+    <string>电子秤初始化</string>
+    <string>Scales Initialization</string>
+  </Init_Scales>
+  <Init_CCD>
+    <string>CCD相机初始化</string>
+    <string>CCD Initialization</string>
+  </Init_CCD>
+  <Init_Scanner>
+    <string>扫码枪初始化</string>
+    <string>Scanner Initialization</string>
+  </Init_Scanner>
+  <Init_OPTControl>
+    <string>光源初始化</string>
+    <string>OPTControl Initialization</string>
+  </Init_OPTControl>
+  <Init_NetWork>
+    <string>网络初始化</string>
+    <string>NetWork Initialization</string>
+  </Init_NetWork>
+</FormInitName>

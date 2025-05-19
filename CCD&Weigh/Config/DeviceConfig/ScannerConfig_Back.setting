@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ScannerConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ProtName>COM3</ProtName>
+  <BanudRate>BaudRate_115200</BanudRate>
+  <DataBits>DataBits_8</DataBits>
+  <Parity>None</Parity>
+  <StopBits>One</StopBits>
+  <OverTime>2</OverTime>
+  <Length>14</Length>
+  <Lock_DSN />
+</ScannerConfig>

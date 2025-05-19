@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<WeightConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Standard>412.39200000000005</Standard>
+  <BoxCount>1</BoxCount>
+  <WeightSum>412.2</WeightSum>
+  <SumCount>1</SumCount>
+  <SKU>
+    <string>GA02293-US</string>
+    <string>GA02290-US</string>
+    <string>GA02294-US</string>
+    <string>GA01311-AUS</string>
+    <string>GA01311-JP</string>
+    <string>GA01311-FR</string>
+    <string>GA01946-JP</string>
+    <string>GA01311-UK</string>
+    <string>GA01311-DE</string>
+    <string>GA02284-US</string>
+    <string>GA02281-US</string>
+  </SKU>
+  <SKU_Standard>
+    <double>412.39200000000005</double>
+    <double>410.5888888888889</double>
+    <double>412.81875000000019</double>
+    <double>429.08965517241381</double>
+    <double>410.2</double>
+    <double>426.6</double>
+    <double>414.59999999999997</double>
+    <double>409.04303797468333</double>
+    <double>411.35000000000008</double>
+    <double>418.43000000000006</double>
+    <double>411.8261904761905</double>
+  </SKU_Standard>
+</WeightConfig>

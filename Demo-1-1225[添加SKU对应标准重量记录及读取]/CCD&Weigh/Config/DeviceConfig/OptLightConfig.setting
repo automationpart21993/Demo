@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<OptLightConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ProtName>COM4</ProtName>
+  <Channel_01_Black>105</Channel_01_Black>
+  <Channel_01_Blue>105</Channel_01_Blue>
+  <Channel_01_White>105</Channel_01_White>
+  <Channel_01_Orange>105</Channel_01_Orange>
+  <Channel_02_Black>96</Channel_02_Black>
+  <Channel_02_Blue>96</Channel_02_Blue>
+  <Channel_02_White>96</Channel_02_White>
+  <Channel_02_Orange>96</Channel_02_Orange>
+  <Channel_03_GLabel>45</Channel_03_GLabel>
+  <Channel_03_Retail>60</Channel_03_Retail>
+  <Channel_04_BOB>95</Channel_04_BOB>
+</OptLightConfig>

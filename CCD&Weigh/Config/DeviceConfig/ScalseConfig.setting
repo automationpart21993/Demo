@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ScalseConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ProtName>COM2</ProtName>
+  <BanudRate>BaudRate_9600</BanudRate>
+  <DataBits>DataBits_8</DataBits>
+  <Parity>None</Parity>
+  <StopBits>One</StopBits>
+  <OverTime>2</OverTime>
+  <UpperLimit_First>8</UpperLimit_First>
+  <LowerLimit_First>8</LowerLimit_First>
+  <UpperLimit_Second>8</UpperLimit_Second>
+  <LowerLimit_Second>8</LowerLimit_Second>
+  <Weight_Clear>true</Weight_Clear>
+</ScalseConfig>
