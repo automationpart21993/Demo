@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<FormUserManagementName xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Label_Title>
+    <string>请选择需要更改的用户类型</string>
+    <string>Select the type of user you want to change</string>
+  </Label_Title>
+  <Label_OldPassword>
+    <string>旧密码</string>
+    <string>Old Password:</string>
+  </Label_OldPassword>
+  <Label_NewPassword>
+    <string>新密码</string>
+    <string>New Password:</string>
+  </Label_NewPassword>
+  <Cb_DefaultUser>
+    <string>设置为默认</string>
+    <string>Set Default</string>
+  </Cb_DefaultUser>
+  <Btn_Modification>
+    <string>确认修改</string>
+    <string>Modification</string>
+  </Btn_Modification>
+</FormUserManagementName>

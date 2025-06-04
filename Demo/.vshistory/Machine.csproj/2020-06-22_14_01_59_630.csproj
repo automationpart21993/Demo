@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36EBCE38-6C9C-401E-856D-A9196445A3CA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Machine</RootNamespace>
+    <AssemblyName>CCD&amp;Weigh</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\CCD&amp;Weigh\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>128X128.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Algorithm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\Algorithm.dll</HintPath>
+    </Reference>
+    <Reference Include="CharpImage">
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\CharpImage.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel">
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="GTSCard">
+      <HintPath>..\..\ClosureLabel\ClosureLabel\GTSCard.dll</HintPath>
+    </Reference>
+    <Reference Include="gtsCardCtrl">
+      <HintPath>..\..\ClosureLabel\ClosureLabel\gtsCardCtrl.dll</HintPath>
+    </Reference>
+    <Reference Include="GTSMotion">
+      <HintPath>..\..\ClosureLabel\ClosureLabel\GTSMotion.dll</HintPath>
+    </Reference>
+    <Reference Include="halcondotnet">
+      <HintPath>..\..\新建文件夹 (2)\CCD&amp;Weight\CCD&amp;Weight\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="hdevenginedotnet">
+      <HintPath>..\..\新建文件夹 (2)\CCD&amp;Weight\CCD&amp;Weight\hdevenginedotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="hWindControl">
+      <HintPath>..\..\新建文件夹 (2)\CCD&amp;Weight\CCD&amp;Weight\hWindControl.dll</HintPath>
+    </Reference>
+    <Reference Include="InputCtrl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\InputCtrl.dll</HintPath>
+    </Reference>
+    <Reference Include="IO, Version=2019.12.27.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CCD&amp;Weigh\IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks">
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
+    </Reference>
+    <Reference Include="NetSocket">
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\NetSocket.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CCD&amp;Weigh\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OptLightController">
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\OptLightController.dll</HintPath>
+    </Reference>
+    <Reference Include="OutputCtrl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\OutputCtrl.dll</HintPath>
+    </Reference>
+    <Reference Include="ParamConfig, Version=2020.2.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ParamConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="RS232">
+      <HintPath>..\..\新建文件夹\CCD&amp;Weight\CCD&amp;Weight\RS232.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UICommon, Version=2019.12.26.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\UICommon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Customization_Form\FormLockDSN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormLockDSN.Designer.cs">
+      <DependentUpon>FormLockDSN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customization_Class\CCDACtion.cs" />
+    <Compile Include="Customization_Class\Engine.cs" />
+    <Compile Include="General_Module\HttpHelper.cs" />
+    <Compile Include="Customization_Class\IOAction.cs" />
+    <Compile Include="Customization_Class\CheckAction.cs" />
+    <Compile Include="Customization_Form\FormMsgBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormMsgBox.Designer.cs">
+      <DependentUpon>FormMsgBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="General_Module\AppConfig.cs" />
+    <Compile Include="General_Module\DataService.cs" />
+    <Compile Include="Customization_Class\DeviceMain.cs" />
+    <Compile Include="Customization_Form\FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customization_Form\FormInit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormInit.Designer.cs">
+      <DependentUpon>FormInit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customization_Form\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customization_Form\FormSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormSetting.Designer.cs">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customization_Form\FormTotal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormTotal.Designer.cs">
+      <DependentUpon>FormTotal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customization_Form\FormUserLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormUserLogin.Designer.cs">
+      <DependentUpon>FormUserLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customization_Form\FormUserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customization_Form\FormUserManagement.Designer.cs">
+      <DependentUpon>FormUserManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="General_Module\LogSaveService.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="General_Module\Scales.cs" />
+    <Compile Include="General_Module\Scanner.cs" />
+    <EmbeddedResource Include="Customization_Form\FormLockDSN.resx">
+      <DependentUpon>FormLockDSN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization_Form\FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization_Form\FormInit.resx">
+      <DependentUpon>FormInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization_Form\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization_Form\FormMsgBox.resx">
+      <DependentUpon>FormMsgBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization_Form\FormSetting.resx">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization_Form\FormTotal.resx">
+      <DependentUpon>FormTotal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization_Form\FormUserLogin.resx">
+      <DependentUpon>FormUserLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customization_Form\FormUserManagement.resx">
+      <DependentUpon>FormUserManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="128X128.ico" />
+    <Content Include="g10.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

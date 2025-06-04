@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<FormAboutName xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Label_Product>
+    <string>产品信息:</string>
+    <string>Product Information:</string>
+  </Label_Product>
+  <Label_Versions>
+    <string>版本信息:</string>
+    <string>Versions Information:</string>
+  </Label_Versions>
+  <Label_Company>
+    <string>制造商:</string>
+    <string>Manufacturer:</string>
+  </Label_Company>
+  <Label_Project>
+    <string>项目:</string>
+    <string>Project:</string>
+  </Label_Project>
+  <Label_Copyright>
+    <string>版权:</string>
+    <string>Copyright:</string>
+  </Label_Copyright>
+  <Tb_Product>
+    <string>CCD称重</string>
+    <string>CCD &amp; Weigh</string>
+  </Tb_Product>
+  <Tb_Versions>
+    <string>01.00.00</string>
+    <string>01.00.00</string>
+  </Tb_Versions>
+  <Tb_Company>
+    <string>东莞爱康电子科技</string>
+    <string>东莞爱康电子科技</string>
+  </Tb_Company>
+  <Tb_Project>
+    <string>B5S5自动线</string>
+    <string>B5S5 Auto Line</string>
+  </Tb_Project>
+  <Tb_Copyright>
+    <string>© Allegro 2019</string>
+    <string>© Allegro 2019</string>
+  </Tb_Copyright>
+</FormAboutName>

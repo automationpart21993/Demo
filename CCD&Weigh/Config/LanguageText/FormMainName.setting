@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<FormMainName xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Btn_Setting>
+    <string>设置</string>
+    <string>Setting</string>
+  </Btn_Setting>
+  <Btn_About>
+    <string>关于</string>
+    <string>About</string>
+  </Btn_About>
+  <Btn_Total>
+    <string>产能报告</string>
+    <string>Total Report</string>
+  </Btn_Total>
+  <Btn_LanguageChange>
+    <string>语言切换</string>
+    <string>Language Change</string>
+  </Btn_LanguageChange>
+  <Btn_LockDSN>
+    <string>锁定DSN</string>
+    <string>Lock DSN</string>
+  </Btn_LockDSN>
+  <CCD1>
+    <string>相机一:彩盒正面</string>
+    <string>CCD1:Color Box Front</string>
+  </CCD1>
+  <CCD2>
+    <string>相机二:彩盒侧面</string>
+    <string>CCD2:Color Box Side</string>
+  </CCD2>
+  <CCD3>
+    <string>相机三:彩盒底面</string>
+    <string>CCD3:Color Box Bottom</string>
+  </CCD3>
+  <Gb_ProductionInfomation>
+    <string>产品信息</string>
+    <string>Production Infomation</string>
+  </Gb_ProductionInfomation>
+  <Label_Weight>
+    <string>重量:</string>
+    <string>Weight:</string>
+  </Label_Weight>
+  <Label_Standard>
+    <string>重量标准值:</string>
+    <string>Standard Weight Value:</string>
+  </Label_Standard>
+  <Label_PassRate>
+    <string>良率:</string>
+    <string>PassRate:</string>
+  </Label_PassRate>
+  <Info_SnCheck>
+    <string>路径检查</string>
+    <string>DSN Check</string>
+  </Info_SnCheck>
+  <Info_WeighCheck>
+    <string>称重检查</string>
+    <string>Weigh Check</string>
+  </Info_WeighCheck>
+  <Info_Color_Top>
+    <string>正面颜色检查</string>
+    <string>Front Color Check</string>
+  </Info_Color_Top>
+  <Info_Color_Retail>
+    <string>侧面颜色检查</string>
+    <string>Retail Color Check</string>
+  </Info_Color_Retail>
+  <Info_Type_Top>
+    <string>正面型号检查</string>
+    <string>Pront Type Check</string>
+  </Info_Type_Top>
+  <Info_Type_Retail>
+    <string>侧面型号检查</string>
+    <string>Retail Type Check</string>
+  </Info_Type_Retail>
+  <Info_Type_BOB>
+    <string>底面型号检查</string>
+    <string>BOB Type Check</string>
+  </Info_Type_BOB>
+  <Info_GLabel>
+    <string>防伪标签检查</string>
+    <string>Retail GLabel</string>
+  </Info_GLabel>
+  <Info_Memory>
+    <string>侧面内存检查</string>
+    <string>Retail Mempry Check</string>
+  </Info_Memory>
+  <Info_Barcode>
+    <string>侧面条码检查</string>
+    <string>Retail Barcode Check</string>
+  </Info_Barcode>
+  <Info_Price>
+    <string>底面信息检查</string>
+    <string>BOB Information Check</string>
+  </Info_Price>
+  <Info_DataUpload>
+    <string>数据上传状态</string>
+    <string>DataUpLoad Status</string>
+  </Info_DataUpload>
+  <Gb_RunningInformation>
+    <string>运行信息</string>
+    <string>Running Information</string>
+  </Gb_RunningInformation>
+  <Gb_Operation>
+    <string>操作</string>
+    <string>Operation</string>
+  </Gb_Operation>
+  <Gb_OPMachine>
+    <string>设备操作</string>
+    <string>Machine Operation</string>
+  </Gb_OPMachine>
+  <Gb_OPD01>
+    <string>入料段操作</string>
+    <string>D01 Operation</string>
+  </Gb_OPD01>
+  <Gb_OPD02>
+    <string>检测段操作</string>
+    <string>D02 Operation</string>
+  </Gb_OPD02>
+  <Gb_OPD03>
+    <string>翻转段操作</string>
+    <string>D03 Operation</string>
+  </Gb_OPD03>
+  <Btn_MachineStop>
+    <string>停止</string>
+    <string>Stop</string>
+  </Btn_MachineStop>
+  <Btn_MachineReset>
+    <string>复位</string>
+    <string>Reset</string>
+  </Btn_MachineReset>
+  <Btn_MachineRun>
+    <string>启动</string>
+    <string>Run</string>
+  </Btn_MachineRun>
+  <Btn_D01Stop>
+    <string>停止</string>
+    <string>Stop</string>
+  </Btn_D01Stop>
+  <Btn_D01Reset>
+    <string>复位</string>
+    <string>Reset</string>
+  </Btn_D01Reset>
+  <Btn_D01Run>
+    <string>启动</string>
+    <string>Run</string>
+  </Btn_D01Run>
+  <Btn_D02Stop>
+    <string>停止</string>
+    <string>Stop</string>
+  </Btn_D02Stop>
+  <Btn_D02Reset>
+    <string>复位</string>
+    <string>Reset</string>
+  </Btn_D02Reset>
+  <Btn_D02Run>
+    <string>启动</string>
+    <string>Run</string>
+  </Btn_D02Run>
+  <Btn_D03Stop>
+    <string>停止</string>
+    <string>Stop</string>
+  </Btn_D03Stop>
+  <Btn_D03Reset>
+    <string>复位</string>
+    <string>Reset</string>
+  </Btn_D03Reset>
+  <Btn_D03Run>
+    <string>启动</string>
+    <string>Run</string>
+  </Btn_D03Run>
+  <Btn_MachineBuzzer>
+    <string>取消警报</string>
+    <string>Clear Alarm</string>
+  </Btn_MachineBuzzer>
+  <Btn_ClearTotal>
+    <string>清空产能</string>
+    <string>Clear Capacity</string>
+  </Btn_ClearTotal>
+  <Label_PassWord>
+    <string>密码:</string>
+    <string>Password:</string>
+  </Label_PassWord>
+  <Btn_CCDDebug>
+    <string>相机调试</string>
+    <string>CCDDebug</string>
+  </Btn_CCDDebug>
+  <Status_EMG>
+    <string>急停状态</string>
+    <string>Status EMG</string>
+  </Status_EMG>
+  <Status_SafeGuard>
+    <string>门禁状态</string>
+    <string>Status SafeGuard</string>
+  </Status_SafeGuard>
+</FormMainName>

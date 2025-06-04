@@ -1,0 +1,1205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<c></c>
+<l>par_start&lt;ThreadID&gt; : create_server()</l>
+<l> wait_seconds(1)</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+<procedure name="create_server">
+<interface/>
+<body>
+<c>                                                                    ****读取各种模板的主逻辑的函数 ******</c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<c></c>
+<c>*---------------------变量定义区------------------------------------*</c>
+<l>open_socket_accept (3000, ['protocol' ], ['HALCON6'], AcceptingSocket)</l>
+<l>dev_error_var (Error, 1)</l>
+<l>dev_set_check ('~give_error')</l>
+<l>OpenStatus := 5</l>
+<l>while (OpenStatus != H_MSG_TRUE)</l>
+<l>    socket_accept_connect (AcceptingSocket, 'true', Socket)</l>
+<l>    OpenStatus := Error</l>
+<l>    wait_seconds (0.2)</l>
+<l>endwhile</l>
+<l>dev_set_check ('give_error')</l>
+<c> *---------------------------------------------------------*</c>
+<l>set_draw(WindowHandle[0], 'margin')</l>
+<l>set_draw(WindowHandle[1], 'margin')</l>
+<l>set_draw(WindowHandle[2], 'margin')</l>
+<c></c>
+<l>while(1)</l>
+<l>    try</l>
+<l>        receive_tuple(Socket, InTuple)</l>
+<l>        if( InTuple[0]='Open_Framegrabber')</l>
+<l>           Open_3CCD ()  </l>
+<l>        elseif ( InTuple[0]='Type_Top')</l>
+<l>            Front_Type (ImageRotate01, WindowHandle[0])</l>
+<l>        elseif ( InTuple[0]='Color_Top')</l>
+<l>            Front_Color (ImageRotate01, WindowHandle[0])</l>
+<l>        elseif ( InTuple[0]='GLabel_Retail')</l>
+<l>            Retail_GLabel (ImageRotate02, WindowHandle[1])</l>
+<l>        elseif ( InTuple[0]='Type_Retail')</l>
+<l>            Retail_Type (ImageRotate02, WindowHandle[1])</l>
+<l>        elseif ( InTuple[0]='Memory_Retail') </l>
+<l>            Retail_Memory (ImageRotate02, WindowHandle[1])</l>
+<l>       elseif ( InTuple[0]='Color_Retail')</l>
+<l>            Retail_Color (ImageRotate02, WindowHandle[1])</l>
+<l>       elseif ( InTuple[0]='Barcode_Retail')</l>
+<l>            Retail_Barcode (ImageRotate02, WindowHandle[1])</l>
+<l>       elseif ( InTuple[0]='Type_BOB')</l>
+<l>            BOB_Type (ImageRotate03, WindowHandle[2])</l>
+<l>       elseif ( InTuple[0]='Price_BOB')</l>
+<l>            BOB_Price (ImageRotate03, WindowHandle[2])</l>
+<l>       elseif ( InTuple[0]='Date_BOB')</l>
+<l>            BOB_Date (ImageRotate03, WindowHandle[2])</l>
+<l>       elseif(InTuple[0]='Take_Pictrue')</l>
+<l>           if(InTuple[1]=1)</l>
+<l>           set_framegrabber_param (AcqHandle[0], 'ExposureTimeAbs', InTuple[2])</l>
+<l>           grab_image(Image,AcqHandle[0])</l>
+<l>           rotate_image(Image, ImageRotate01, 180, 'constant')</l>
+<l>*            mirror_image(Image,ImageRotate01,'column')</l>
+<l>           disp_image(ImageRotate01, WindowHandle[0])</l>
+<l>           elseif(InTuple[1]=2)</l>
+<l>           set_framegrabber_param (AcqHandle[1], 'ExposureTimeAbs', InTuple[2])</l>
+<l>           grab_image(Image,AcqHandle[1])</l>
+<l>*            rotate_image(Image, ImageRotate02, 0, 'constant')</l>
+<l>           mirror_image(Image,ImageRotate02,'row')</l>
+<l>           disp_image(ImageRotate02, WindowHandle[1])</l>
+<l>           else</l>
+<l>           set_framegrabber_param (AcqHandle[2], 'ExposureTimeAbs', InTuple[2])</l>
+<l>           grab_image(Image,AcqHandle[2])</l>
+<l>           rotate_image(Image, ImageRotate03, 180, 'constant')</l>
+<l>           disp_image(ImageRotate03, WindowHandle[2])</l>
+<l>           endif</l>
+<l>           send_tuple(Socket, true)</l>
+<l>       elseif(InTuple[0]='SaveImage')</l>
+<l>           if(InTuple[1]=1)</l>
+<l>               write_image(ImageRotate01, InTuple[3], 0, InTuple[2])</l>
+<l>           elseif(InTuple[1]=2)</l>
+<l>               write_image(ImageRotate02, InTuple[3], 0, InTuple[2])</l>
+<l>           else</l>
+<l>               write_image(ImageRotate03, InTuple[3], 0, InTuple[2])</l>
+<l>           endif</l>
+<l>           send_tuple(Socket, true)</l>
+<l>       elseif(InTuple[0]='ReadImage')</l>
+<l>           if(InTuple[1]=1)</l>
+<l>               read_image(ImageRotate01, InTuple[2])</l>
+<l>               disp_image(ImageRotate01, WindowHandle[0])</l>
+<l>           elseif(InTuple[1]=2)</l>
+<l>               read_image(ImageRotate02, InTuple[2])</l>
+<l>               disp_image(ImageRotate02, WindowHandle[1])</l>
+<l>           else</l>
+<l>               read_image(ImageRotate03, InTuple[2])</l>
+<l>               disp_image(ImageRotate03, WindowHandle[2])</l>
+<l>           endif</l>
+<l>           send_tuple(Socket, true)</l>
+<l>       else </l>
+<l>           send_tuple(Socket,  false)</l>
+<l>        endif</l>
+<l>    catch (Exception)</l>
+<l>        send_tuple(Socket, [false,Exception])</l>
+<l>    endtry       </l>
+<l>endwhile</l>
+<l>return ()</l>
+<c></c>
+</body>
+<docu id="create_server">
+<parameters/>
+</docu>
+</procedure>
+<procedure name="Open_2CCD">
+<interface>
+<ic>
+<par name="InValue" base_type="ctrl" dimension="0"/>
+</ic>
+<oc>
+<par name="AcqHandle1" base_type="ctrl" dimension="0"/>
+<par name="AcqHandle2" base_type="ctrl" dimension="0"/>
+<par name="error" base_type="ctrl" dimension="0"/>
+</oc>
+</interface>
+<body>
+<c>                                      ***同时打开2个相机*****</c>
+<l> * read_tuple('Init_framegrabber.tup' ,Tuple)</l>
+<l>IsVirtual :=InValue[1]</l>
+<l>imageFilePath := InValue[2]</l>
+<l>deviceId1:=InValue[3]</l>
+<l>deviceId2:=InValue[4]</l>
+<l>* deviceId3:=InValue[5]</l>
+<l>* deviceId4:=InValue[6]</l>
+<l>try</l>
+<l>    error := false</l>
+<l>    if (IsVirtual='True')</l>
+<c>       </c>
+<l>        open_framegrabber ('File', 1, 1, 0, 0, 0, 0, 'default', -1, 'default', -1, 'false', imageFilePath, 'default', 1, -1, AcqHandle1)</l>
+<l>        grab_image_start (AcqHandle1, -1)</l>
+<l>        AcqHandle2:=AcqHandle1</l>
+<l>*         AcqHandle3:=AcqHandle1</l>
+<l>*         AcqHandle4:=AcqHandle1</l>
+<l>    else </l>
+<l>        open_framegrabber ('GigEVision', 0, 0, 0, 0, 0, 0, 'default', -1, 'default', -1, 'false', 'default', deviceId1, 0, -1, AcqHandle1)</l>
+<l>         open_framegrabber ('GigEVision', 0, 0, 0, 0, 0, 0, 'default', -1, 'default', -1, 'false', 'default', deviceId2, 0, -1, AcqHandle2)</l>
+<c>         </c>
+<l>         grab_image_start (AcqHandle1, -1)</l>
+<l>         grab_image_start (AcqHandle2, -1)</l>
+<c>        </c>
+<l>    endif</l>
+<l>    error := false</l>
+<l>catch (Exception)</l>
+<l>    disp_message(3600, [imageFilePath,Exception], 'window', 9, 9, 'black', 'true')</l>
+<l>    error := true</l>
+<l>endtry</l>
+<c></c>
+<c> </c>
+<l>return ()</l>
+</body>
+<docu id="Open_2CCD">
+<parameters>
+<parameter id="AcqHandle1"/>
+<parameter id="AcqHandle2"/>
+<parameter id="InValue"/>
+<parameter id="error"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="Open_3CCD">
+<interface/>
+<body>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<c></c>
+<c>*---------------------变量定义区------------------------------------*</c>
+<c>***同时打开3个相机*****</c>
+<c> </c>
+<l>IsVirtual :=InTuple[1]</l>
+<l>imageFilePath := InTuple[2]</l>
+<l>deviceId1:=InTuple[3]</l>
+<l>deviceId2:=InTuple[4]</l>
+<l>deviceId3:=InTuple[5]</l>
+<c></c>
+<l>try</l>
+<l>    error := false</l>
+<l>    if (IsVirtual='True')</l>
+<l>        open_framegrabber ('File', 1, 1, 0, 0, 0, 0, 'default', -1, 'default', -1, 'false', imageFilePath, 'default', 1, -1, AcqHandle1)</l>
+<l>        grab_image_start (AcqHandle1, -1)</l>
+<l>        AcqHandle2:=AcqHandle1</l>
+<l>        AcqHandle3:=AcqHandle1</l>
+<l>    else </l>
+<l>        open_framegrabber ('GigEVision2', 0, 0, 0, 0, 0, 0, 'progressive', -1, 'default', -1, 'false', 'default', deviceId1, 0, -1, AcqHandle1)</l>
+<l>        open_framegrabber ('GigEVision2', 0, 0, 0, 0, 0, 0, 'progressive', -1, 'default', -1, 'false', 'default', deviceId2, 0, -1, AcqHandle2)</l>
+<l>        open_framegrabber ('GigEVision2', 0, 0, 0, 0, 0, 0, 'progressive', -1, 'default', -1, 'false', 'default', deviceId3, 0, -1, AcqHandle3)</l>
+<l>        grab_image_start (AcqHandle1, -1)</l>
+<l>        grab_image_start (AcqHandle2, -1)</l>
+<l>        grab_image_start (AcqHandle3, -1)</l>
+<l>*         set_framegrabber_param (AcqHandle1, 'ReverseX', 0)</l>
+<l>*         set_framegrabber_param (AcqHandle2, 'ReverseX', 1)</l>
+<l>    endif</l>
+<l>    AcqHandle:=[AcqHandle1,AcqHandle2,AcqHandle3]</l>
+<l>    handle_to_integer(AcqHandle, CastedHandle)</l>
+<l>    error := true</l>
+<l>catch (Exception)</l>
+<l>    disp_message(WindowHandle[0], [CastedHandle,Exception], 'window', 9, 9, 'black', 'true')</l>
+<l>    error := false</l>
+<l>endtry</l>
+<l>    send_tuple(Socket,[error, CastedHandle])</l>
+<l>return ()</l>
+</body>
+<docu id="Open_3CCD">
+<parameters/>
+</docu>
+</procedure>
+<procedure name="Front_Type">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle  </l>
+<c>*******手机正面类型模板函数**************</c>
+<l>try  </l>
+<l>    Phone_Type:=InTuple[1]</l>
+<l>    modelscore:=InTuple[2]</l>
+<l>    Path:=InTuple[3]</l>
+<l>    Test:=InTuple[4]</l>
+<l>    B5:=false</l>
+<l>    B5M:=false</l>
+<l>    count_seconds (Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>    set_color (windowHandle,'blue')</l>
+<l>    set_system ('border_shape_models', 'false') </l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_Front_S5_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Type_Front_S5.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_S5)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_S5| - 1 by 1</l>
+<l>    hom_mat2d_identity (HomMat)</l>
+<l>    hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>    hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>    affine_trans_contour_xld (ModelContours, TransContours_S5, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_S5&lt;modelscore)</l>
+<l>        if(Phone_Type=1)</l>
+<l>            disp_message(windowHandle, ['Type-Top-S5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(Phone_Type=0)</l>
+<l>            disp_message(windowHandle, ['Type-Top-B5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-Top-B5M\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>        return()</l>
+<l>    endif</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_Front_B5_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Type_Front_B5.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_B5)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_B5| - 1 by 1</l>
+<l>    hom_mat2d_identity (HomMat)</l>
+<l>    hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>    hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>    affine_trans_contour_xld (ModelContours, TransContours_B5, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_B5&gt;modelscore)</l>
+<l>        B5:=true</l>
+<l>    endif</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_Front_B5M_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Type_Front_B5M.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_B5M)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_B5M| - 1 by 1</l>
+<l>    hom_mat2d_identity (HomMat)</l>
+<l>    hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>    hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>    affine_trans_contour_xld (ModelContours, TransContours_B5M, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_B5M&gt;modelscore)</l>
+<l>        B5M:=true</l>
+<l>    endif</l>
+<l>    count_seconds (Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if(Phone_Type=1)</l>
+<l>        if(B5=true)</l>
+<l>            disp_message(windowHandle, ['Type-Top-S5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5M=true)</l>
+<l>            disp_message(windowHandle, ['Type-Top-S5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        else</l>
+<l>            disp_obj (TransContours_S5, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-Top-S5\nPass:'+ModelScore_S5+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        endif</l>
+<l>    elseif(Phone_Type=0)</l>
+<l>        if(B5M=true)</l>
+<l>            disp_message(windowHandle, ['Type-Top-B5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5=true)</l>
+<l>            disp_obj (TransContours_B5, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-Top-B5\nPass:'+ModelScore_B5+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-Top-B5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>    else</l>
+<l>        if(B5=true)</l>
+<l>            disp_message(windowHandle, ['Type-Top-B5M\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5M=true)</l>
+<l>            disp_obj (TransContours_B5M, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-Top-B5M\nPass:'+ModelScore_B5M+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-Top-B5M\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>    endif</l>
+<l>catch (Exception)</l>
+<l>     disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>     send_tuple (Socket, false)</l>
+<l>endtry</l>
+<l>return()</l>
+</body>
+<docu id="Front_Type">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="Retail_Barcode">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                                       *****读取条码 IMEI、SKU一维码********</c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle                   </l>
+<l>try</l>
+<l>    CodeTypes := ['EAN-13','EAN-8', 'Code 39', 'Code 93', 'Code 128']</l>
+<l>    count_seconds (Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    create_bar_code_model ('element_size_min', 1.5, BarCodeHandle)</l>
+<l>    set_display_font (windowHandle, 10, 'mono', 'true', 'false')</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    set_line_width (windowHandle,2)</l>
+<l>    set_color (windowHandle,'forest green')</l>
+<l>    disp_obj(Image, windowHandle)</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    find_bar_code (Image, SymbolRegions, BarCodeHandle, CodeTypes, DecodedDataStrings)</l>
+<l>    area_center(SymbolRegions, Area, Row, Column)</l>
+<l>    disp_obj (SymbolRegions,windowHandle)</l>
+<l>    get_bar_code_result (BarCodeHandle, 'all', 'decoded_types', DecodedDataTypes)</l>
+<l>    count_seconds (Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if (|DecodedDataStrings|=0)</l>
+<l>        disp_message (windowHandle, ['Barcode: Fail'], 'window',  12, 12, 'red', 'true')</l>
+<l>        send_tuple(Socket,  false )</l>
+<l>    else</l>
+<l>        disp_message (windowHandle, ['useTime:' + Duration$'3.0f' + 'ms:',' Type: ' + DecodedDataTypes + '\n Barcode: ' + DecodedDataStrings], 'window',  12, 12, 'lime green', 'true')</l>
+<l>        send_tuple (Socket, [DecodedDataStrings])</l>
+<l>    endif</l>
+<l>    clear_bar_code_model (BarCodeHandle)</l>
+<l>catch (Exception)</l>
+<l>    disp_message(windowHandle,Exception, 'window', 12, 12, 'red', 'true')</l>
+<l>    send_tuple(Socket, false)</l>
+<l>endtry</l>
+<l>return ()</l>
+</body>
+<docu id="Retail_Barcode">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="Retail_Memory">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                               **********读取手机内存模板的函数***********</c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<l>try</l>
+<l>    Memory:=InTuple[1] </l>
+<l>    modelscore:=InTuple[2]</l>
+<l>    Path:=InTuple[3]</l>
+<l>    Test:=InTuple[4]</l>
+<l>    Language:=InTuple[5]</l>
+<l>    count_seconds (Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>    set_color (windowHandle,'blue')</l>
+<l>    set_system ('border_shape_models', 'false')</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Memory_Retail_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Memory_Retail_'+Memory+'_'+Language+'.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours, HomMat)</l>
+<l>        dev_display (TransContours)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    count_seconds (Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if(ModelScore&gt;modelscore)</l>
+<l>        disp_obj (TransContours, windowHandle)</l>
+<l>        disp_message (windowHandle, ['Memory-Retail-Memory\nPass:'+ModelScore+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>        send_tuple(Socket,  true)</l>
+<l>    else</l>
+<l>        disp_message(windowHandle, ['Memory-Retail-Memory\nFail'], 'window', 12, 12, 'red', 'true')</l>
+<l>        send_tuple (Socket, false)</l>
+<l>    endif</l>
+<c>     </c>
+<l>catch (Exception)</l>
+<l>    disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>    send_tuple (Socket, false)</l>
+<l>endtry</l>
+<c></c>
+<l>return ()</l>
+</body>
+<docu id="Retail_Memory">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="Retail_Color">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                                      ******读取各种颜色的模板的函数*******   </c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<l>try</l>
+<l>    color:=InTuple[1]</l>
+<l>    modelscore:=InTuple[2]</l>
+<l>    Path:=InTuple[3]</l>
+<l>    Test:=InTuple[4]</l>
+<l>    Language:=InTuple[5]   </l>
+<l>    count_seconds(Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>    set_color (windowHandle,'blue')</l>
+<l>    set_system ('border_shape_models', 'false')</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Color_Retail_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Color_Retail_'+color+'_'+Language+'.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.75, ModelRow, ModelColumn, ModelAngle, ModelScore)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours, HomMat)</l>
+<l>        dev_display (TransContours)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    count_seconds(Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if(ModelScore&gt;modelscore)</l>
+<l>        disp_obj (TransContours, windowHandle)</l>
+<l>        disp_message (windowHandle, ['Color-Retail-Color\nPass:'+ModelScore+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>        send_tuple(Socket,  true)</l>
+<l>    else</l>
+<l>        disp_message(windowHandle, ['Color-Retail-Color\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>        send_tuple (Socket, false)</l>
+<l>    endif</l>
+<c>     </c>
+<l>catch (Exception)</l>
+<l>    disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>    send_tuple (Socket, false)</l>
+<l>endtry</l>
+<c></c>
+<l>return ()</l>
+</body>
+<docu id="Retail_Color">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="BOB_Price">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                                                       ****印度价格标签的函数*****</c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<l>try</l>
+<l>    memory:=InTuple[1]</l>
+<l>    modelscore:=InTuple[2]</l>
+<l>    Path:=InTuple[3]</l>
+<l>    Test:=InTuple[4]</l>
+<l>    count_seconds(Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>    set_color (windowHandle,'blue')</l>
+<l>    set_system ('border_shape_models', 'false')</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Price_BOB_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Price_BOB_'+memory+'.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours, HomMat)</l>
+<l>        dev_display (TransContours)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    count_seconds(Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if(ModelScore&gt;modelscore)</l>
+<l>        disp_obj (TransContours, windowHandle)</l>
+<l>        disp_message (windowHandle, ['Money-BOB-Price\nPass:'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>        send_tuple(Socket,  true)</l>
+<l>    else</l>
+<l>        disp_message(windowHandle, ['Money-BOB-Price\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>        send_tuple (Socket, false)</l>
+<l>    endif</l>
+<l>catch (Exception)</l>
+<l>    disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>    send_tuple (Socket, false)</l>
+<l>endtry</l>
+<c></c>
+<l>return ()</l>
+</body>
+<docu id="BOB_Price">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="Retail_GLabel">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                            ************检测google Logo标志**********</c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<l>try</l>
+<l>    modelscore:=InTuple[1]</l>
+<l>    Path:=InTuple[2]</l>
+<l>    Test:=InTuple[3]</l>
+<l>    count_seconds (Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>    set_color (windowHandle,'blue')</l>
+<l>    set_system ('border_shape_models', 'false')</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/GLabel_Retail_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>         read_shape_model (Path+'/GLabel_Retail.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(90), modelscore, 1, 0.5, 'least_squares', [4,1], 0.75, ModelRow, ModelColumn, ModelAngle, ModelScore)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours, HomMat)</l>
+<l>        dev_display (TransContours)</l>
+<l>        disp_obj (TransContours, windowHandle)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    count_seconds (Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if(ModelScore&lt;modelscore)</l>
+<l>        disp_message (windowHandle, ['GLabel-Retail\nFail'], 'window',  12, 12, 'red', 'true')</l>
+<l>        send_tuple(Socket,  false )</l>
+<l>    else</l>
+<l>        disp_message (windowHandle, ['GLabel-Retail\nPass:'+'\n'+ModelScore+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>        disp_obj (TransContours, windowHandle)</l>
+<l>        send_tuple(Socket,  true )</l>
+<l>    endif</l>
+<l>catch (Exception)</l>
+<l>    disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>    send_tuple (Socket, false)</l>
+<l>endtry</l>
+<l>return ()</l>
+</body>
+<docu id="Retail_GLabel">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="Retail_Type">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                                    ********手机小侧面类型模板函数************</c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<l>try</l>
+<l>    Phone_Type:=InTuple[1]</l>
+<l>    modelscore:=InTuple[2]</l>
+<l>    Path:=InTuple[3]</l>
+<l>    Test:=InTuple[4]</l>
+<l>    ADD:=InTuple[5]</l>
+<l>    B5:=false</l>
+<l>    B5M:=false</l>
+<l>    count_seconds (Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>    set_color (windowHandle,'blue')</l>
+<l>    set_system ('border_shape_models', 'false')</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_Retail_S5_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        if(ADD=='JP')</l>
+<l>            read_shape_model (Path+'/Type_Retail_S5_JP.shm', ModelId)</l>
+<l>        else</l>
+<l>            read_shape_model (Path+'/Type_Retail_S5.shm', ModelId)</l>
+<l>        endif</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_S5)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_S5| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours_S5, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_S5&lt;modelscore)</l>
+<l>        if(Phone_Type=1)</l>
+<l>            disp_message(windowHandle, ['Type-Retail-S5\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(Phone_Type=0)</l>
+<l>            disp_message(windowHandle, ['Type-Retail-B5\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-Retail-B5M\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>        return ()</l>
+<l>    endif</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_Retail_B5_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        if(ADD=='JP')</l>
+<l>            read_shape_model (Path+'/Type_Retail_B5_JP.shm', ModelId)</l>
+<l>        else</l>
+<l>            read_shape_model (Path+'/Type_Retail_B5.shm', ModelId)</l>
+<l>        endif</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_B5)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_B5| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours_B5, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_B5&gt;modelscore)</l>
+<l>        B5:=true</l>
+<l>    endif</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_Retail_B5M_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        if(ADD=='JP')</l>
+<l>            read_shape_model (Path+'/Type_Retail_B5M_JP.shm', ModelId)</l>
+<l>        else</l>
+<l>            read_shape_model (Path+'/Type_Retail_B5M.shm', ModelId)</l>
+<l>        endif</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_B5M)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_B5M| - 1 by 1</l>
+<l>    hom_mat2d_identity (HomMat)</l>
+<l>    hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>    hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>    affine_trans_contour_xld (ModelContours, TransContours_B5M, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_B5M&gt;modelscore)</l>
+<l>        B5M:=true</l>
+<l>    endif</l>
+<l>    count_seconds (Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if(Phone_Type=1)</l>
+<l>        if(B5=true)</l>
+<l>            disp_message(windowHandle, ['Type-Retail-S5\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5M=true)</l>
+<l>            disp_message(windowHandle, ['Type-Retail-S5\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        else</l>
+<l>            disp_obj (TransContours_S5, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-Retail-S5\n模板匹配成功:'+ModelScore_S5+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        endif</l>
+<l>    elseif(Phone_Type=0)</l>
+<l>        if(B5M=true)</l>
+<l>            disp_message(windowHandle, ['Type-Retail-B5\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5=true)</l>
+<l>            disp_obj (TransContours_B5, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-Retail-B5\n模板匹配成功:'+ModelScore_B5+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-Retail-B5\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>    else</l>
+<l>        if(B5=true)</l>
+<l>            disp_message(windowHandle, ['Type-Retail-B5M\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5M=true)</l>
+<l>            disp_obj (TransContours_B5M, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-Retail-B5M\n模板匹配成功:'+ModelScore_B5M+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-Retail-B5M\n模板匹配失败'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>    endif</l>
+<l>catch (Exception)</l>
+<l>     disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>     send_tuple (Socket, false)</l>
+<l>endtry</l>
+<l>return ()</l>
+</body>
+<docu id="Retail_Type">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="BOB_Type">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                                                **********印度大侧边类型模板函数************</c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<l>try</l>
+<l>    Phone_Type:=InTuple[1]</l>
+<l>    modelscore:=InTuple[2]</l>
+<l>    Path:=InTuple[3]</l>
+<l>    Test:=InTuple[4]</l>
+<l>    B5:=false</l>
+<l>    B5M:=false</l>
+<l>    count_seconds(Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>    set_color (windowHandle,'blue')</l>
+<l>    set_system ('border_shape_models', 'false')</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_BOB_S5_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Type_BOB_S5.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_S5)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_S5| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours_S5, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_S5&lt;modelscore)</l>
+<l>        if(Phone_Type=1)</l>
+<l>            disp_message(windowHandle, ['Type-Top-S5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(Phone_Type=0)</l>
+<l>            disp_message(windowHandle, ['Type-Top-B5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-Top-B5M\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>        return ()</l>
+<l>    endif</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_BOB_B5_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Type_BOB_B5.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_B5)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_B5| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours_B5, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_B5&gt;modelscore)</l>
+<l>        B5M:=true</l>
+<l>    endif</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Type_BOB_B5M_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        read_shape_model (Path+'/Type_BOB_B5M.shm', ModelId)</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(360), modelscore, 1, 0.5, 'least_squares', [4,1], 0.4, ModelRow, ModelColumn, ModelAngle, ModelScore_B5M)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore_B5M| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours_B5M, HomMat)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    if(ModelScore_B5M&gt;modelscore)</l>
+<l>        B5M:=true</l>
+<l>    endif</l>
+<l>    count_seconds (Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if(Phone_Type=1)</l>
+<l>        if(B5=true)</l>
+<l>            disp_message(windowHandle, ['Type-BOB-S5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5M=true)</l>
+<l>            disp_message(windowHandle, ['Type-BOB-S5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        else</l>
+<l>            disp_obj (TransContours_S5, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-BOB-S5\nPass:'+ModelScore_S5+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        endif</l>
+<l>    elseif(Phone_Type=0)</l>
+<l>        if(B5M=true)</l>
+<l>            disp_message(windowHandle, ['Type-BOB-B5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5=true)</l>
+<l>            disp_obj (TransContours_B5, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-BOB-B5\nPass:'+ModelScore_B5+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-BOB-B5\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>    else</l>
+<l>        if(B5=true)</l>
+<l>            disp_message(windowHandle, ['Type-BOB-B5M\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        elseif(B5M=true)</l>
+<l>            disp_obj (TransContours_B5M, windowHandle)</l>
+<l>            disp_message (windowHandle, ['Type-BOB-B5M\nPass:'+ModelScore_B5M+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>            send_tuple(Socket,  true)</l>
+<l>        else</l>
+<l>            disp_message(windowHandle, ['Type-BOB-B5M\nFail'] , 'window', 12, 12, 'red', 'true')</l>
+<l>            send_tuple (Socket, false)</l>
+<l>        endif</l>
+<l>    endif</l>
+<l>catch (Exception)</l>
+<l>    disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>    send_tuple (Socket, false)</l>
+<l>endtry</l>
+<l>return ()</l>
+</body>
+<docu id="BOB_Type">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="Front_Color">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle  </l>
+<c>*******手机外壳的颜色用平均灰度值来区分的函数********</c>
+<l>try</l>
+<l>    BlackArea:=InTuple[1]</l>
+<l>    BlueArea:=InTuple[2]</l>
+<l>    WhiteArea:=InTuple[3]</l>
+<l>    Path:=InTuple[4]</l>
+<l>    count_seconds(Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    decompose3 (Image, ImageR, ImageG, ImageB)</l>
+<l>    read_region (Region, Path+'/Color_Front.reg')</l>
+<l>    disp_obj (Region, windowHandle)</l>
+<l>    reduce_domain (ImageB, Region, ImageReduced)</l>
+<l>    scale_image_max (ImageReduced, ImageScaleMax)</l>
+<l>    threshold (ImageScaleMax, Regions, 0, 100)</l>
+<l>    reduce_domain (ImageG, Regions, ImageReduced1)</l>
+<l>    smooth_image (ImageReduced1, ImageSmooth, 'gauss', 2.5)</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    intensity (Regions, ImageSmooth, Mean, Deviation)</l>
+<l>    count_seconds(Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if (Mean &lt; BlackArea)</l>
+<l>        disp_message (windowHandle, 'Black - Threshold：' + Mean+'\n'+'useTime:' + Duration$'3.0f' + 'ms', 'window', 12, 12, 'lime green', 'true')</l>
+<l>        send_tuple (Socket, 'Black')</l>
+<l>        return ()</l>
+<l>    elseif (Mean &lt; BlueArea)</l>
+<l>        disp_message (windowHandle, 'Blue - Threshold：' + Mean+'\n'+'useTime:' + Duration$'3.0f' + 'ms', 'window', 12, 12, 'lime green', 'true')</l>
+<l>        send_tuple (Socket, 'Blue')</l>
+<l>        return ()</l>
+<l>    elseif (Mean &lt; WhiteArea)</l>
+<l>        disp_message (windowHandle, 'White - Threshold：' + Mean+'\n'+'useTime:' + Duration$'3.0f' + 'ms', 'window', 12, 12, 'lime green', 'true')</l>
+<l>        send_tuple (Socket, 'White')</l>
+<l>        return ()</l>
+<l>    else</l>
+<l>        disp_message (windowHandle, 'Orange - Threshold：' + Mean+'\n'+'useTime:' + Duration$'3.0f' + 'ms', 'window', 12, 12, 'lime green', 'true')</l>
+<l>        send_tuple (Socket, 'Orange')</l>
+<l>        return ()</l>
+<l>    endif</l>
+<l>catch (Exception)</l>
+<l>    disp_message (windowHandle, Exception, 'window', 9, 9, 'red', 'true')</l>
+<l>    send_tuple (Socket, [false])</l>
+<l>endtry</l>
+<l>return ()</l>
+<c></c>
+<c></c>
+</body>
+<docu id="Front_Color">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="GetLine">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+<par name="Socket" base_type="ctrl" dimension="0"/>
+<par name="Row" base_type="ctrl" dimension="0"/>
+<par name="Column" base_type="ctrl" dimension="0"/>
+<par name="Phi" base_type="ctrl" dimension="0"/>
+<par name="Length1" base_type="ctrl" dimension="0"/>
+<par name="Length2" base_type="ctrl" dimension="0"/>
+<par name="Threshold" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                               ***********检测小侧面的google的logo的距离**********</c>
+<l>try  </l>
+<l>*      grab_image(Image,windowHandle)</l>
+<l>     disp_image(Image, windowHandle)</l>
+<l>     set_draw (windowHandle,'margin')</l>
+<l>     get_image_size (Image, Width, Height)</l>
+<l>     set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>     set_color (windowHandle,'blue')</l>
+<l>     RowThresh:=[]</l>
+<l>     ColumnThresh:=[]</l>
+<l>     Count:=10</l>
+<l>     set_system ('int_zooming', 'true')</l>
+<c>     * Measure 01: Coordinates for line Measure 01 [0]</c>
+<l>     * draw_rectangle2 (3600, Row, Column, Phi, Length1, Length2)</l>
+<l>*      read_region(Region, 'rectangle.reg')</l>
+<l>*      reduce_domain(Image, Region, ImageReduced)</l>
+<l>*      area_center_gray (Region, ImageReduced, Area, Row, Column)</l>
+<l>*      elliptic_axis (ImageReduced, Length1, Length2, Phi)</l>
+<l>*      Row:=215.929</l>
+<l>*      Column:=732.631</l>
+<l>*      Phi:=-1.54279</l>
+<l>*      Length1:=143.054</l>
+<l>*      Length2:=70.6402</l>
+<l>     gen_rectangle2 (Rectangle, Row, Column, Phi, Length1, Length2)</l>
+<l>     Column1:=Column-Length2</l>
+<l>     for Index := 1 to Count by 1</l>
+<l>     gen_measure_rectangle2 (Row, Column1, Phi, Length1, Length2, Width, Height, 'nearest_neighbor', MsrHandle_Measure_01_0)</l>
+<l>     measure_thresh (Image, MsrHandle_Measure_01_0, 1, Threshold, 'first', RowThresh1, ColumnThresh1, Distance)</l>
+<l>     *measure_pos (Image, MsrHandle_Measure_01_0, 1, 40, 'all', 'all', Row_Measure_01_0, Column_Measure_01_0, Amplitude_Measure_01_0, Distance_Measure_01_0)</l>
+<l>     RowThresh:=[RowThresh,RowThresh1]</l>
+<l>     ColumnThresh:=[ColumnThresh,ColumnThresh1]</l>
+<l>     Column1:=Column1+2*Length2/(Count-1)</l>
+<l>     endfor</l>
+<l>     if(ColumnThresh1&gt;1)</l>
+<l>     gen_cross_contour_xld (Cross, RowThresh, ColumnThresh, 6, 0.8)</l>
+<l>     gen_contour_polygon_xld (Contour, RowThresh, ColumnThresh)</l>
+<l>     fit_line_contour_xld (Contour, 'tukey', -1, 0, 5, 2, RowBegin, ColBegin, RowEnd, ColEnd, Nr, Nc, Dist)</l>
+<l>     close_measure (MsrHandle_Measure_01_0)</l>
+<l>     disp_message (windowHandle, ['抓边成功'+'\n'+'点坐标：'+'\n'+RowBegin+','+ColBegin+'\n'+ RowEnd+','+ColEnd], 'window',  12, 12, 'lime green', 'true')</l>
+<l>     send_tuple(Socket,  ['true',RowBegin, ColBegin, RowEnd, ColEnd])</l>
+<l>     disp_obj (Rectangle, windowHandle)</l>
+<l>     disp_obj (Contour, windowHandle)</l>
+<l>     else</l>
+<l>            disp_message(windowHandle, ['抓边失败'] , 'window', 12, 12, 'lime green', 'true')</l>
+<l>            send_tuple (Socket, 'false')</l>
+<l>     endif</l>
+<c>     </c>
+<l>catch (Exception)</l>
+<l>     disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>endtry</l>
+<c></c>
+<l>return ()</l>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+</body>
+<docu id="GetLine">
+<parameters>
+<parameter id="Column"/>
+<parameter id="Image"/>
+<parameter id="Length1"/>
+<parameter id="Length2"/>
+<parameter id="Phi"/>
+<parameter id="Row"/>
+<parameter id="Socket"/>
+<parameter id="Threshold"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+<procedure name="BOB_Date">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<ic>
+<par name="windowHandle" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>                            ************检测google Logo标志**********</c>
+<l>global def tuple WindowHandle</l>
+<l>global def tuple Socket</l>
+<l>global def tuple InTuple</l>
+<l>global def tuple AcqHandle</l>
+<l>try</l>
+<l>    modelscore:=InTuple[1]</l>
+<l>    Path:=InTuple[2]</l>
+<l>    Test:=InTuple[3]</l>
+<l>    Type:=InTuple[4]</l>
+<l>    count_seconds (Start)</l>
+<l>    disp_image(Image, windowHandle)</l>
+<l>    set_draw (windowHandle,'margin')</l>
+<l>    get_image_size (Image, Width, Height)</l>
+<l>    set_display_font (windowHandle, 14, 'mono', 'true', 'false')</l>
+<l>    set_color (windowHandle,'blue')</l>
+<l>    set_system ('border_shape_models', 'false')</l>
+<l>    if(Test=='True')</l>
+<l>        read_shape_model (Path+'/Date_BOB_Test.shm', ModelId)</l>
+<l>    else</l>
+<l>        if(Type=='IN')</l>
+<l>            read_shape_model (Path+'/Date_BOB_IN.shm', ModelId)</l>
+<l>        elseif(Type=='TW')</l>
+<l>            read_shape_model (Path+'/Date_BOB_TW.shm', ModelId)</l>
+<l>        endif</l>
+<l>    endif</l>
+<l>    get_shape_model_contours (ModelContours, ModelId, 1)</l>
+<l>    find_shape_model (Image, ModelId, rad(0), rad(90), modelscore, 1, 0.5, 'least_squares', [4,1], 0.75, ModelRow, ModelColumn, ModelAngle, ModelScore)</l>
+<l>    for MatchingObjIdx := 0 to |ModelScore| - 1 by 1</l>
+<l>        hom_mat2d_identity (HomMat)</l>
+<l>        hom_mat2d_rotate (HomMat, ModelAngle[MatchingObjIdx], 0, 0, HomMat)</l>
+<l>        hom_mat2d_translate (HomMat, ModelRow[MatchingObjIdx], ModelColumn[MatchingObjIdx], HomMat)</l>
+<l>        affine_trans_contour_xld (ModelContours, TransContours, HomMat)</l>
+<l>        dev_display (TransContours)</l>
+<l>        disp_obj (TransContours, windowHandle)</l>
+<l>    endfor</l>
+<l>    clear_shape_model (ModelId)</l>
+<l>    count_seconds (Stop)</l>
+<l>    Duration := (Stop - Start) * 1000</l>
+<l>    if(ModelScore&gt;modelscore)</l>
+<l>        disp_message (windowHandle, ['Date-BOB\nPass:'+'\n'+ModelScore+'\n'+'useTime:' + Duration$'3.0f' + 'ms'], 'window',  12, 12, 'lime green', 'true')</l>
+<l>        disp_obj (TransContours, windowHandle)</l>
+<l>        send_tuple(Socket,  true )</l>
+<l>    else</l>
+<l>        disp_message (windowHandle, ['Date-BOB\nFail'], 'window',  12, 12, 'red', 'true')</l>
+<l>        send_tuple(Socket,  false )</l>
+<l>    endif</l>
+<l>catch (Exception)</l>
+<l>    disp_message(windowHandle,  Exception , 'window', 9, 9, 'red', 'true')</l>
+<l>    send_tuple (Socket, false)</l>
+<l>endtry</l>
+<l>return ()</l>
+</body>
+<docu id="BOB_Date">
+<parameters>
+<parameter id="Image"/>
+<parameter id="windowHandle"/>
+</parameters>
+</docu>
+</procedure>
+</hdevelop>
